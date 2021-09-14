@@ -110,37 +110,58 @@ class _FirstPageState extends State<FirstPage> {
               child: FutureBuilder<dynamic>(
                 future: getMovieData(),
                 builder: (context, snapshot) {
-                  return ListView.builder(
-                    itemCount: 4,
-                    scrollDirection: Axis.vertical,
-                    shrinkWrap: true,
-                    itemBuilder: (context,index){
-                      return Stack(
-                        children: [
-                          Column(
+                  if(snapshot.connectionState==ConnectionState.done) {
+                    if (snapshot.hasData) {
+                      return ListView.builder(
+                        itemCount: 4,
+                        physics: BouncingScrollPhysics(),
+                        scrollDirection: Axis.vertical,
+                        shrinkWrap: true,
+                        itemBuilder: (context, index) {
+                          return Stack(
                             children: [
-                              InkWell(
-                                  child: MovieCard(height: height, width: width,data:snapshot.data["Search"],idx:index),
-                              onTap: ()async{
-                                    Navigator.push(context, MaterialPageRoute(builder: (context)=>SecondPage(
-                                      imdbId: snapshot.data["Search"][index]["imdbID"],
-                                    )));
-                              },
+                              Column(
+                                children: [
+                                  InkWell(
+                                    child: MovieCard(height: height,
+                                        width: width,
+                                        data: snapshot.data["Search"],
+                                        idx: index),
+                                    onTap: () async {
+                                      Navigator.push(context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  SecondPage(
+                                                    imdbId: snapshot
+                                                        .data["Search"][index]["imdbID"],
+                                                  )));
+                                    },
+                                  ),
+                                  SizedBox(
+                                    height: 0.1 * height,
+                                  ),
+                                ],
                               ),
-                              SizedBox(
-                                height: 0.1*height,
+                              Positioned(
+                                  bottom: 0.05 * height,
+                                  left: 0.03 * width,
+                                  child: MoviePoster(height: height,
+                                      width: width,
+                                      data: snapshot.data["Search"],
+                                      idx: index)
                               ),
                             ],
-                          ),
-                          Positioned(
-                            bottom: 0.05*height,
-                            left: 0.03*width,
-                            child: MoviePoster(height: height,width: width,data:snapshot.data["Search"],idx:index)
-                          ),
-                        ],
+                          );
+                        },
                       );
-                    },
-                  );
+                    }
+                    return Container(
+                      child: Center(
+                        child: Text("Sorry No Data Available"),
+                      ),
+                    );
+                  }
+                  return CircularProgressIndicator();
                 }
               ),
             ),

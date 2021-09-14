@@ -1,4 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_snake_navigationbar/flutter_snake_navigationbar.dart';
 
 import '../../constants.dart';
 class CommonNavBar extends StatelessWidget {
@@ -8,15 +10,17 @@ class CommonNavBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BottomNavigationBar(
-      iconSize: 30,
-      elevation: 10,
-      fixedColor: Colors.black,
-      type: BottomNavigationBarType.fixed,
-      items:[
-        BottomNavigationBarItem(icon: Icon(Icons.home),label: " "),
-        BottomNavigationBarItem(icon: Icon(Icons.bookmark),label: " "),
-        BottomNavigationBarItem(icon: Icon(Icons.person),label: " "),
+    return SnakeNavigationBar.color(
+      shape: bottomBarShape,
+      snakeShape: SnakeShape.circle,
+      selectedItemColor: CupertinoColors.white,
+      snakeViewColor: Color(0xffFC7B71),
+      unselectedItemColor: Colors.black,
+      backgroundColor: CupertinoColors.white,
+      items: [
+        BottomNavigationBarItem(icon: Icon(Icons.home)),
+        BottomNavigationBarItem(icon: Icon(Icons.bookmark_border)),
+        BottomNavigationBarItem(icon: Icon(Icons.person)),
       ],
     );
   }

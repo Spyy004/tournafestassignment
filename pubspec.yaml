@@ -30,6 +30,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   dot_navigation_bar:
   http:
+  flutter_snake_navigationbar:
 
 dev_dependencies:
   flutter_test:
