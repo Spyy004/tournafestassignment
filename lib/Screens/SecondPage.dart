@@ -3,10 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
-import 'package:tournafestassignment/Screens/Components/FirstPageUIComponents.dart';
 import 'package:tournafestassignment/Services/API.dart';
 import 'package:tournafestassignment/constants.dart';
-
 import 'Components/SecondPageUiComponents.dart';
 class SecondPage extends StatefulWidget {
   SecondPage({Key? key,required this.imdbId}) : super(key: key);
@@ -16,8 +14,8 @@ class SecondPage extends StatefulWidget {
 }
 class _SecondPageState extends State<SecondPage> {
   dynamic singleMovieData;
-  GetServices getServices = GetServices();
-  Future<dynamic>getSingleMovieData()async
+  GetServices getServices = GetServices();  // created an object of class GetServices.
+  Future<dynamic>getSingleMovieData()async   // function to access the api call function.
   {
     singleMovieData = await getServices.getSingleMovieDetails(widget.imdbId);
     return singleMovieData;
@@ -27,7 +25,6 @@ class _SecondPageState extends State<SecondPage> {
     var width = MediaQuery.of(context).size.width;
     var height = MediaQuery.of(context).size.height;
     return Scaffold(
-
       extendBodyBehindAppBar: true,
       appBar: AppBar(
         leading: Padding(
@@ -197,7 +194,7 @@ class _SecondPageState extends State<SecondPage> {
               );
             }
             return Container(
-              child: Text("No Data Found"),
+              child: Center(child: Text("No Data Found")),
             );
           }
           return CircularProgressIndicator();

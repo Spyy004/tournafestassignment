@@ -1,11 +1,7 @@
-
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:dot_navigation_bar/dot_navigation_bar.dart';
 import 'package:tournafestassignment/Services/API.dart';
 import 'package:tournafestassignment/constants.dart';
-
 import 'Components/FirstPageUIComponents.dart';
 import 'SecondPage.dart';
 class FirstPage extends StatefulWidget {
@@ -17,9 +13,9 @@ class FirstPage extends StatefulWidget {
 
 class _FirstPageState extends State<FirstPage> {
   @override
-  dynamic movieData;
-  GetServices getServices = GetServices();
-  Future<dynamic>getMovieData()async
+  dynamic movieData; // to store the api response
+  GetServices getServices = GetServices();  // created an object of class GetServices
+  Future<dynamic>getMovieData()async  // function to access the api call function.
   {
     movieData= await getServices.getAllMovieData();
     return movieData;

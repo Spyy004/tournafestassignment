@@ -31,6 +31,7 @@ dependencies:
   dot_navigation_bar:
   http:
   flutter_snake_navigationbar:
+  flutter_dotenv:
 
 dev_dependencies:
   flutter_test:
