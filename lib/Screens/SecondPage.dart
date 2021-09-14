@@ -13,12 +13,12 @@ class SecondPage extends StatefulWidget {
   _SecondPageState createState() => _SecondPageState();
 }
 class _SecondPageState extends State<SecondPage> {
-  dynamic singleMovieData;
+  dynamic _singleMovieData;
   GetServices getServices = GetServices();  // created an object of class GetServices.
   Future<dynamic>getSingleMovieData()async   // function to access the api call function.
   {
-    singleMovieData = await getServices.getSingleMovieDetails(widget.imdbId);
-    return singleMovieData;
+    _singleMovieData = await getServices.getSingleMovieDetails(widget.imdbId);
+    return _singleMovieData;
   }
   @override
   Widget build(BuildContext context) {

@@ -12,13 +12,12 @@ class FirstPage extends StatefulWidget {
 }
 
 class _FirstPageState extends State<FirstPage> {
-  @override
-  dynamic movieData; // to store the api response
+  dynamic _movieData; // to store the api response
   GetServices getServices = GetServices();  // created an object of class GetServices
   Future<dynamic>getMovieData()async  // function to access the api call function.
   {
-    movieData= await getServices.getAllMovieData();
-    return movieData;
+    _movieData= await getServices.getAllMovieData();
+    return _movieData;
   }
   void initState() {
     // TODO: implement initState
@@ -96,7 +95,7 @@ class _FirstPageState extends State<FirstPage> {
                 )
               ],
             ),
-          ),
+          ),   // lowest layer of stack
           Positioned(
             top: height*0.22,
             left: 0.08*width,
@@ -161,7 +160,7 @@ class _FirstPageState extends State<FirstPage> {
                 }
               ),
             ),
-          ),
+          ), // top most layer of stack
         ],
       ),
     );
